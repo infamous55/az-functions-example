@@ -8,7 +8,7 @@ blueprint = func.Blueprint()
 # For HTTP triggered functions, specify the route.
 @blueprint.function_name(name="HttpTriggerExample")
 @blueprint.route(route="jokes", methods=["GET"])
-def test_function(req: func.HttpRequest) -> func.HttpResponse:
+def get_joke(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     category = req.params.get("category") or "neutral"
