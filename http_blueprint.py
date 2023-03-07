@@ -28,3 +28,16 @@ def get_joke(req: func.HttpRequest) -> func.HttpResponse:
         mimetype="application/json",
         status_code=200
     )
+
+@blueprint.function_name(name="BlobInputExample")
+@blueprint.route(route="settings", methods=["GET"])
+@blueprint.blob_input(arg_name="input", path="files/settings.json", connection="AzureWebJobsStorage")
+def get_settings(req: func.HttpRequest, input: bytes) -> func.HttpResponse:
+    logging.info("Python Blob input function processed a request.")
+    
+    settings = json.loads(input)
+    return func.HttpResponse(
+        body=json.dumps({"settings": settings}),
+        mimetype="application/json",
+        status_code=200
+    )
