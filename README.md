@@ -14,6 +14,25 @@ The Function App showcases the [Python V2 programming model](https://learn.micro
 
 More examples of triggers and bindings can be found in the [official documentation](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-triggers-python).
 
+## Running locally
+
+First, make sure you have the [Azure Functions Core Tools](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local) on your system. Then, start by cloning this repository and opening its directory in Visual Studio Code.
+
+```bash
+git clone https://github.com/infamous55/az-functions-example.git && cd az-functions-example
+code .
+```
+
+With the [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) extension installed, Visual Studio Code will ask you to initialize the project. This process includes creating the `.vscode` directory and a virtual environment, activating the virtual environment, and installing the dependencies. Remember to pick the [Python V2 programming model](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=wsgi%2Capplication-level&pivots=python-mode-decorators).
+
+Note: If the editor warns you about not being able to resolve dependencies, restart it.
+
+In your `local.settings.json`, set the value of `AzureWebJobsFeatureFlags` equal to `EnableWorkerIndexing`.
+
+You also need the [Azurite](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite) extension to emulate an Azure Storage Account. To start the emulator, press `F1`, then search and select `Azurite: Start`.
+
+Launch the Function App in debug mode by pressing `F5`. Close it with `Ctrl + C` in the terminal, and stop the Storage emulator with `Azurite: Close`, followed by `Azurite: Clean`.
+
 ## Deploying to Azure
 
 To deploy this application to Azure using Visual Studio Code, you should have installed the [Azure Account](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account), [Azure Resources](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups), [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions), and [Azure Storage](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestorage) extensions.
@@ -38,4 +57,4 @@ Now you should be able to copy a function's URL or execute it by browsing your A
 
 ## Cleaning up
 
-You should have two new resource groups: one for the Storage Account; and one for the Function App and its associated resources. Execute the `Azure: Delete Resource Group...` command to clean up.
+You should have two new resource groups: one for the Storage Account; and one for the Function App and its associated resources. Execute the `Azure: Delete Resource Group...` command to delete each of them.
